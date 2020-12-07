@@ -18,6 +18,8 @@ class AppButton(tk.Button):
         """  """
         super().__init__(*args, **kwargs)
         self.config(
-            bg=ap.BACKGROUND_COLOR,
+            background=ap.BACKGROUND_COLOR,
+            activebackground=ap.BACKGROUND_COLOR,
+            relief="flat",
             highlightthickness=0
         )
