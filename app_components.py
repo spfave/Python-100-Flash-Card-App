@@ -3,7 +3,7 @@ import app_parameters as ap
 
 
 # Classes
-class AppCardCanvas(tk.Canvas):
+class AppCard(tk.Canvas):
     """  """
 
     def __init__(self, parent, *args, **kwargs):
