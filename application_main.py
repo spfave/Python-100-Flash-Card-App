@@ -23,11 +23,10 @@ class MainApplication(tk.Frame):
         self.canvas_card = ac.AppCardCanvas(self, width=800, height=526,
                                             bg=ap.BACKGROUND_COLOR,
                                             highlightthickness=0)
-        self.image_card = tk.PhotoImage(file="images/card_front.png")
-        self.canvas_card.create_image(400, 263, image=self.image_card)
-
-        self.canvas_card.create_text(400, 135, text="French", font=font_lang)
-        self.canvas_card.create_text(400, 350, text="Word", font=font_word)
+        self.image_card_front = tk.PhotoImage(file="images/card_front.png")
+        self.canvas_card.create_image(400, 263, image=self.image_card_front)
+        self.canvas_card.create_text(400, 155, text="French", font=font_lang)
+        self.canvas_card.create_text(400, 325, text="Word", font=font_word)
 
         self.image_correct = tk.PhotoImage(file="images/right.png")
         self.button_correct = ac.AppButton(self, image=self.image_correct)

@@ -1,6 +1,5 @@
 import tkinter as tk
 import application_main as am
-# import app_components as ac
 import app_parameters as ap
 
 
