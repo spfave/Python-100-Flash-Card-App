@@ -17,8 +17,10 @@ class MainApplication(tk.Frame):
         self.image_card = tk.PhotoImage(file="images/card_front.png")
         self.canvas_card.create_image(400, 263, image=self.image_card)
 
-        self.button_correct = ac.AppButton(self, text="Correct")
-        self.button_wrong = ac.AppButton(self, text="Wrong")
+        self.image_correct = tk.PhotoImage(file="images/right.png")
+        self.button_correct = ac.AppButton(self, image=self.image_correct)
+        self.image_wrong = tk.PhotoImage(file="images/wrong.png")
+        self.button_wrong = ac.AppButton(self, image=self.image_wrong)
 
         self.canvas_card.grid(row=0, column=0, columnspan=2)
         self.button_correct.grid(row=1, column=0)
