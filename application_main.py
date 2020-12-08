@@ -21,14 +21,16 @@ class MainApplication(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
         self.config(bg=ap.BACKGROUND_COLOR)
+        self.language = "French"
 
         self.canvas_card = ac.AppCardCanvas(self, width=800, height=526,
                                             bg=ap.BACKGROUND_COLOR,
                                             highlightthickness=0)
         self.image_card_front = tk.PhotoImage(file="images/card_front.png")
         self.canvas_card.create_image(400, 263, image=self.image_card_front)
-        self.canvas_card.create_text(400, 155, text="French", font=font_lang)
-        self.card_word_french = self.canvas_card.create_text(
+        self.card_title = self.canvas_card.create_text(
+            400, 155, text="", font=font_lang)
+        self.card_word = self.canvas_card.create_text(
             400, 325, text="", font=font_word)
         self.new_word()
 
@@ -51,8 +53,7 @@ class MainApplication(tk.Frame):
 
     def new_word(self):
         """  """
-        word_data = random.choice(language_fr_dict)
-        word_french = word_data["French"]
-        # word_english = word_data["English"]
-
-        self.canvas_card.itemconfig(self.card_word_french, text=word_french)
+        card_data = random.choice(language_fr_dict)
+        self.canvas_card.itemconfig(self.card_title, text=self.language)
+        self.canvas_card.itemconfig(
+            self.card_word, text=card_data[self.language])
