@@ -28,6 +28,7 @@ class MainApplication(tk.Frame):
         self.lang_from = "French"
         self.lang_to = "English"
 
+        # todo: refactor to AppCard class
         self.card = ac.AppCard(self)
         self.image_card_front = tk.PhotoImage(file="images/card_front.png")
         self.image_card_back = tk.PhotoImage(file="images/card_back.png")
@@ -58,6 +59,7 @@ class MainApplication(tk.Frame):
     def click_wrong(self):
         self.new_card()
 
+    # todo: refactor to AppCard class
     def new_card(self):
         self.after_cancel(self.timer_flip)
         self.card_data = random.choice(language_fr_dict)
@@ -74,6 +76,7 @@ class MainApplication(tk.Frame):
     def delay_card_flip(self):
         self.timer_flip = self.after(3000, func=self.flip_card)
 
+    # todo: refactor to AppCard class
     def flip_card(self):
         self.card.itemconfig(self.card_side, image=self.image_card_back)
         self.card.itemconfig(
