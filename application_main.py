@@ -1,6 +1,8 @@
 import tkinter as tk
+import random
 import app_components as ac
 import app_parameters as ap
+from language_data import language_fr_dict
 
 
 # Constants
@@ -26,13 +28,31 @@ class MainApplication(tk.Frame):
         self.image_card_front = tk.PhotoImage(file="images/card_front.png")
         self.canvas_card.create_image(400, 263, image=self.image_card_front)
         self.canvas_card.create_text(400, 155, text="French", font=font_lang)
-        self.canvas_card.create_text(400, 325, text="Word", font=font_word)
+        self.card_word_french = self.canvas_card.create_text(
+            400, 325, text="", font=font_word)
+        self.new_word()
 
         self.image_correct = tk.PhotoImage(file="images/right.png")
-        self.button_correct = ac.AppButton(self, image=self.image_correct)
+        self.button_correct = ac.AppButton(
+            self, image=self.image_correct, command=self.click_correct)
         self.image_wrong = tk.PhotoImage(file="images/wrong.png")
-        self.button_wrong = ac.AppButton(self, image=self.image_wrong)
+        self.button_wrong = ac.AppButton(
+            self, image=self.image_wrong, command=self.click_wrong)
 
         self.canvas_card.grid(row=0, column=0, columnspan=2)
         self.button_correct.grid(row=1, column=0)
         self.button_wrong.grid(row=1, column=1)
+
+    def click_correct(self):
+        self.new_word()
+
+    def click_wrong(self):
+        self.new_word()
+
+    def new_word(self):
+        """  """
+        word_data = random.choice(language_fr_dict)
+        word_french = word_data["French"]
+        # word_english = word_data["English"]
+
+        self.canvas_card.itemconfig(self.card_word_french, text=word_french)
