@@ -3,6 +3,12 @@ import application_main as am
 import app_parameters as ap
 
 
+# # Functions
+# def flip_cards():
+#     """  """
+#     flash_card_app.after(1000, flash_card_app.flip_card())
+
+
 # Main
 root = tk.Tk()
 root.title("Language Flash Cards")

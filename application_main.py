@@ -18,10 +18,14 @@ font_word = (FONT_NAME, 60, "bold")
 class MainApplication(tk.Frame):
     """  """
 
+    # image_card_front = tk.PhotoImage(file="images/card_front.png")
+    # image_card_back = tk.PhotoImage(file="images/card_back.png")
+
     def __init__(self, parent, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
         self.config(bg=ap.BACKGROUND_COLOR)
-        self.language = "French"
+        self.lang_from = "French"
+        self.lang_to = "English"
 
         self.canvas_card = ac.AppCardCanvas(self, width=800, height=526,
                                             bg=ap.BACKGROUND_COLOR,
@@ -29,12 +33,12 @@ class MainApplication(tk.Frame):
         self.image_card_front = tk.PhotoImage(file="images/card_front.png")
         self.image_card_back = tk.PhotoImage(file="images/card_back.png")
         self.card_side = self.canvas_card.create_image(
-            400, 263, image=self.image_card_front)
+            400, 263, image=None)
         self.card_title = self.canvas_card.create_text(
             400, 155, text="", font=font_lang)
         self.card_word = self.canvas_card.create_text(
             400, 325, text="", font=font_word)
-        self.new_word()
+        self.new_card()
 
         self.image_correct = tk.PhotoImage(file="images/right.png")
         self.button_correct = ac.AppButton(
@@ -48,18 +52,25 @@ class MainApplication(tk.Frame):
         self.button_wrong.grid(row=1, column=1)
 
     def click_correct(self):
-        self.new_word()
+        self.new_card()
+        # self.after(1000, self.flip_card())
         self.flip_card()
 
     def click_wrong(self):
-        self.new_word()
+        self.new_card()
 
-    def new_word(self):
-        """  """
-        card_data = random.choice(language_fr_dict)
-        self.canvas_card.itemconfig(self.card_title, text=self.language)
+    def new_card(self):
+        self.card_data = random.choice(language_fr_dict)
+
         self.canvas_card.itemconfig(
-            self.card_word, text=card_data[self.language])
+            self.card_side, image=self.image_card_front)
+        self.canvas_card.itemconfig(self.card_title, text=self.lang_from)
+        self.canvas_card.itemconfig(
+            self.card_word, text=self.card_data[self.lang_from])
 
     def flip_card(self):
         self.canvas_card.itemconfig(self.card_side, image=self.image_card_back)
+        self.canvas_card.itemconfig(
+            self.card_title, text=self.lang_to, fill="white")
+        self.canvas_card.itemconfig(
+            self.card_word, text=self.card_data[self.lang_to], fill="white")
