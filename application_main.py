@@ -28,9 +28,7 @@ class MainApplication(tk.Frame):
         self.lang_from = "French"
         self.lang_to = "English"
 
-        self.card = ac.AppCard(self, width=800, height=526,
-                               bg=ap.BACKGROUND_COLOR,
-                               highlightthickness=0)
+        self.card = ac.AppCard(self)
         self.image_card_front = tk.PhotoImage(file="images/card_front.png")
         self.image_card_back = tk.PhotoImage(file="images/card_back.png")
         self.card_side = self.card.create_image(

@@ -9,6 +9,9 @@ class AppCard(tk.Canvas):
     def __init__(self, parent, *args, **kwargs):
         """  """
         super().__init__(parent, *args, **kwargs)
+        self.config(width=800, height=526,
+                    bg=ap.BACKGROUND_COLOR,
+                    highlightthickness=0)
 
 
 class AppButton(tk.Button):
