@@ -24,6 +24,7 @@ class MainApplication(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
         self.config(bg=ap.BACKGROUND_COLOR)
+        self.timer_flip = None
         self.lang_from = "French"
         self.lang_to = "English"
 
@@ -38,7 +39,6 @@ class MainApplication(tk.Frame):
             400, 155, text="", font=font_lang)
         self.card_word = self.canvas_card.create_text(
             400, 325, text="", font=font_word)
-        self.new_card()
 
         self.image_correct = tk.PhotoImage(file="images/right.png")
         self.button_correct = ac.AppButton(
@@ -51,14 +51,17 @@ class MainApplication(tk.Frame):
         self.button_correct.grid(row=1, column=0)
         self.button_wrong.grid(row=1, column=1)
 
+        self.delay_card_flip()
+        self.new_card()
+
     def click_correct(self):
         self.new_card()
-        self.delay_card_flip()
 
     def click_wrong(self):
         self.new_card()
 
     def new_card(self):
+        self.after_cancel(self.timer_flip)
         self.card_data = random.choice(language_fr_dict)
 
         self.canvas_card.itemconfig(
@@ -71,7 +74,7 @@ class MainApplication(tk.Frame):
         self.delay_card_flip()
 
     def delay_card_flip(self):
-        self.after(1000, func=self.flip_card)
+        self.timer_flip = self.after(3000, func=self.flip_card)
 
     def flip_card(self):
         self.canvas_card.itemconfig(self.card_side, image=self.image_card_back)
