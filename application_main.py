@@ -3,6 +3,15 @@ import app_components as ac
 import app_parameters as ap
 
 
+# Constants
+FONT_NAME = "Arial"
+
+
+# Variables
+font_lang = (FONT_NAME, 50, "italic")
+font_word = (FONT_NAME, 60, "bold")
+
+
 # Classes
 class MainApplication(tk.Frame):
     """  """
@@ -16,6 +25,9 @@ class MainApplication(tk.Frame):
                                             highlightthickness=0)
         self.image_card = tk.PhotoImage(file="images/card_front.png")
         self.canvas_card.create_image(400, 263, image=self.image_card)
+
+        self.canvas_card.create_text(400, 135, text="French", font=font_lang)
+        self.canvas_card.create_text(400, 350, text="Word", font=font_word)
 
         self.image_correct = tk.PhotoImage(file="images/right.png")
         self.button_correct = ac.AppButton(self, image=self.image_correct)
