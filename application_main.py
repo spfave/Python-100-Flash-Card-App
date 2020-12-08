@@ -27,7 +27,9 @@ class MainApplication(tk.Frame):
                                             bg=ap.BACKGROUND_COLOR,
                                             highlightthickness=0)
         self.image_card_front = tk.PhotoImage(file="images/card_front.png")
-        self.canvas_card.create_image(400, 263, image=self.image_card_front)
+        self.image_card_back = tk.PhotoImage(file="images/card_back.png")
+        self.card_side = self.canvas_card.create_image(
+            400, 263, image=self.image_card_front)
         self.card_title = self.canvas_card.create_text(
             400, 155, text="", font=font_lang)
         self.card_word = self.canvas_card.create_text(
@@ -47,6 +49,7 @@ class MainApplication(tk.Frame):
 
     def click_correct(self):
         self.new_word()
+        self.flip_card()
 
     def click_wrong(self):
         self.new_word()
@@ -57,3 +60,6 @@ class MainApplication(tk.Frame):
         self.canvas_card.itemconfig(self.card_title, text=self.language)
         self.canvas_card.itemconfig(
             self.card_word, text=card_data[self.language])
+
+    def flip_card(self):
+        self.canvas_card.itemconfig(self.card_side, image=self.image_card_back)
