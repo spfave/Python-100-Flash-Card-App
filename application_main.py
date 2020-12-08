@@ -53,8 +53,7 @@ class MainApplication(tk.Frame):
 
     def click_correct(self):
         self.new_card()
-        # self.after(1000, self.flip_card())
-        self.flip_card()
+        self.delay_card_flip()
 
     def click_wrong(self):
         self.new_card()
@@ -64,9 +63,15 @@ class MainApplication(tk.Frame):
 
         self.canvas_card.itemconfig(
             self.card_side, image=self.image_card_front)
-        self.canvas_card.itemconfig(self.card_title, text=self.lang_from)
         self.canvas_card.itemconfig(
-            self.card_word, text=self.card_data[self.lang_from])
+            self.card_title, text=self.lang_from, fill="black")
+        self.canvas_card.itemconfig(
+            self.card_word, text=self.card_data[self.lang_from], fill="black")
+
+        self.delay_card_flip()
+
+    def delay_card_flip(self):
+        self.after(1000, func=self.flip_card)
 
     def flip_card(self):
         self.canvas_card.itemconfig(self.card_side, image=self.image_card_back)
