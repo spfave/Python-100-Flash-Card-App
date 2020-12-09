@@ -5,21 +5,9 @@ import app_parameters as ap
 from language_data import language_fr_dict
 
 
-# Constants
-FONT_NAME = "Arial"
-
-
-# Variables
-font_lang = (FONT_NAME, 50, "italic")
-font_word = (FONT_NAME, 60, "bold")
-
-
 # Classes
 class MainApplication(tk.Frame):
     """  """
-
-    # image_card_front = tk.PhotoImage(file="images/card_front.png")
-    # image_card_back = tk.PhotoImage(file="images/card_back.png")
 
     def __init__(self, parent, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
@@ -30,14 +18,6 @@ class MainApplication(tk.Frame):
 
         # todo: refactor to AppCard class
         self.card = ac.AppCard(self)
-        self.image_card_front = tk.PhotoImage(file="images/card_front.png")
-        self.image_card_back = tk.PhotoImage(file="images/card_back.png")
-        self.card_side = self.card.create_image(
-            400, 263, image=None)
-        self.card_title = self.card.create_text(
-            400, 155, text="", font=font_lang)
-        self.card_word = self.card.create_text(
-            400, 325, text="", font=font_word)
 
         self.image_correct = tk.PhotoImage(file="images/right.png")
         self.button_correct = ac.AppButton(
@@ -65,11 +45,11 @@ class MainApplication(tk.Frame):
         self.card_data = random.choice(language_fr_dict)
 
         self.card.itemconfig(
-            self.card_side, image=self.image_card_front)
+            self.card.image_side, image=self.card.image_front)
         self.card.itemconfig(
-            self.card_title, text=self.lang_from, fill="black")
+            self.card.title, text=self.lang_from, fill="black")
         self.card.itemconfig(
-            self.card_word, text=self.card_data[self.lang_from], fill="black")
+            self.card.word, text=self.card_data[self.lang_from], fill="black")
 
         self.delay_card_flip()
 
@@ -78,8 +58,8 @@ class MainApplication(tk.Frame):
 
     # todo: refactor to AppCard class
     def flip_card(self):
-        self.card.itemconfig(self.card_side, image=self.image_card_back)
+        self.card.itemconfig(self.card.image_side, image=self.card.image_back)
         self.card.itemconfig(
-            self.card_title, text=self.lang_to, fill="white")
+            self.card.title, text=self.lang_to, fill="white")
         self.card.itemconfig(
-            self.card_word, text=self.card_data[self.lang_to], fill="white")
+            self.card.word, text=self.card_data[self.lang_to], fill="white")
