@@ -16,7 +16,6 @@ class MainApplication(tk.Frame):
         self.lang_from = "French"
         self.lang_to = "English"
 
-        # todo: refactor to AppCard class
         self.card = ac.AppCard(self)
 
         self.image_correct = tk.PhotoImage(file="images/right.png")

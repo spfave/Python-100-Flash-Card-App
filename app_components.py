@@ -12,6 +12,19 @@ font_word = (FONT_NAME, 60, "bold")
 
 
 # Classes
+class CardDeck():
+    """  """
+
+    def __init__(self, parent):
+        self.lang_from = "French"
+        self.lang_to = "English"
+
+        self.card = AppCard(parent)
+
+    def next_card(self):
+        pass
+
+
 class AppCard(tk.Canvas):
     """  """
 
