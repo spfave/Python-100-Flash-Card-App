@@ -21,8 +21,14 @@ class CardDeck():
 
         self.card = AppCard(parent)
 
+    # todo: create carddeck data
+    # todo: save incorrect words
+
+    # todo: get next card in deck
     def next_card(self):
         pass
+
+    # todo: remove word/card from deck if gotten correct
 
 
 class AppCard(tk.Canvas):

@@ -30,16 +30,16 @@ class MainApplication(tk.Frame):
         self.button_wrong.grid(row=1, column=1)
 
         self.delay_card_flip()
-        self.new_card()
+        self.refresh_card()
 
     def click_correct(self):
-        self.new_card()
+        self.refresh_card()
 
     def click_wrong(self):
-        self.new_card()
+        self.refresh_card()
 
     # todo: refactor to AppCard class
-    def new_card(self):
+    def refresh_card(self):
         self.after_cancel(self.timer_flip)
         self.card_data = random.choice(language_fr_dict)
 
