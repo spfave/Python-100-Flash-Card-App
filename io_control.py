@@ -6,7 +6,6 @@ language_fr_data = pd.read_csv("data/french_words.csv")
 language_fr_dict = language_fr_data.to_dict(orient="records")
 
 
-# todo: Create IOControl class with methods to ...
 class IOControl():
     """  """
 
@@ -15,19 +14,21 @@ class IOControl():
         self.lang_cards = f"data/{lang_from.lower()}_words2.csv"
         self.lang_cards_reduced = f"data/{lang_from.lower()}_words_to_learn.csv"
 
-# todo: try to open 'french_words_to_learn.csv' if doesn't exist open 'french-words.csv'
+    def get_all_cards(self):
+        with open(self.lang_cards, mode="r") as data_file:
+            cards_data = pd.read_csv(data_file)
+            return cards_data
+
     def get_cards(self):
         try:
             with open(self.lang_cards_reduced, mode="r") as data_file:
                 cards_data = pd.read_csv(data_file)
         except FileNotFoundError:
-            with open(self.lang_cards, mode="r") as data_file:
-                cards_data = pd.read_csv(data_file)
+            cards_data = self.get_all_cards()
         finally:
             cards_dict = cards_data.to_dict(orient="records")
             return cards_dict
 
-# todo: save incorrect words to 'french_words_to_learn.csv'
     def write_cards(self, words_to_learn):
         data_words_to_learn = pd.DataFrame(words_to_learn)
         with open(self.lang_cards_reduced, mode="w", newline="") as write_file:

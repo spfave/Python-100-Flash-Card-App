@@ -25,11 +25,9 @@ class CardDeck():
         self.card = AppCard(parent)
         self.next_card()
 
-# todo: get next card in deck
     def next_card(self):
         self.card.refresh(random.choice(self.cards), self.lang_from)
 
-# todo: remove word/card from deck if gotten correct
     def remove_card(self):
         if len(self.cards) > 0:
             self.cards[:] = [
@@ -37,9 +35,8 @@ class CardDeck():
                 if card.get(self.lang_from) != self.card.get_word_text(self.lang_from)]
             # if card.get(self.lang_to) != self.card.get_word_text(self.lang_to)]
         else:  # start with full deck again
-            self.cards = self.io.get_cards()
+            self.cards = self.io.get_all_cards()
 
-# todo: save incorrect words
     def save_words_to_learn(self):
         self.io.write_cards(self.cards)
 
