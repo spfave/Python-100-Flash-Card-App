@@ -30,5 +30,5 @@ class IOControl():
 # todo: save incorrect words to 'french_words_to_learn.csv'
     def write_cards(self, words_to_learn):
         data_words_to_learn = pd.DataFrame(words_to_learn)
-        with open(self.lang_cards_reduced, mode="w") as write_file:
+        with open(self.lang_cards_reduced, mode="w", newline="") as write_file:
             data_words_to_learn.to_csv(write_file, index=False)

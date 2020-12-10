@@ -31,10 +31,13 @@ class CardDeck():
 
 # todo: remove word/card from deck if gotten correct
     def remove_card(self):
-        self.cards[:] = [
-            card for card in self.cards
-            if card.get(self.lang_from) != self.card.get_word_text(self.lang_from)]
-        # if card.get(self.lang_to) != self.card.get_word_text(self.lang_to)]
+        if len(self.cards) > 0:
+            self.cards[:] = [
+                card for card in self.cards
+                if card.get(self.lang_from) != self.card.get_word_text(self.lang_from)]
+            # if card.get(self.lang_to) != self.card.get_word_text(self.lang_to)]
+        else:  # start with full deck again
+            self.cards = self.io.get_cards()
 
 # todo: save incorrect words
     def save_words_to_learn(self):
