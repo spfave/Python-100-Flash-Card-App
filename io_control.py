@@ -1,11 +1,12 @@
 import pandas as pd
 
 
-# Language data import
-language_fr_data = pd.read_csv("data/french_words.csv")
-language_fr_dict = language_fr_data.to_dict(orient="records")
+# Functions
+def dataframe_to_dict(dataframe):
+    return dataframe.to_dict(orient="records")
 
 
+# Classes
 class IOControl():
     """  """
 
@@ -17,7 +18,8 @@ class IOControl():
     def get_all_cards(self):
         with open(self.lang_cards, mode="r") as data_file:
             cards_data = pd.read_csv(data_file)
-            return cards_data
+            cards_dict = dataframe_to_dict(cards_data)
+            return cards_dict
 
     def get_cards(self):
         try:
@@ -26,7 +28,8 @@ class IOControl():
         except FileNotFoundError:
             cards_data = self.get_all_cards()
         finally:
-            cards_dict = cards_data.to_dict(orient="records")
+            cards_dict = dataframe_to_dict(cards_data)
+            # cards_dict = cards_data.to_dict(orient="records")
             return cards_dict
 
     def write_cards(self, words_to_learn):
