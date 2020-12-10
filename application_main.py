@@ -35,6 +35,8 @@ class MainApplication(tk.Frame):
 
     def click_correct(self):
         # self.refresh_card()
+        self.card_deck.remove_card()
+        self.card_deck.save_words_to_learn()
         self.card_deck.next_card()
 
     def click_wrong(self):

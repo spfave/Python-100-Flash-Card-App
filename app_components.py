@@ -32,7 +32,9 @@ class CardDeck():
 # todo: remove word/card from deck if gotten correct
     def remove_card(self):
         self.cards[:] = [
-            card for card in self.cards if card[self.lang_to] != self.card.word]
+            card for card in self.cards
+            if card.get(self.lang_from) != self.card.get_word_text(self.lang_from)]
+        # if card.get(self.lang_to) != self.card.get_word_text(self.lang_to)]
 
 # todo: save incorrect words
     def save_words_to_learn(self):
@@ -56,17 +58,20 @@ class AppCard(tk.Canvas):
         self.word = self.create_text(400, 325, text="", font=font_word)
 
     def refresh(self, card_data, lang_from):
-        self.card_data = card_data
+        self.data = card_data
 
         self.itemconfig(self.image_side, image=self.image_front)
         self.itemconfig(self.title, text=lang_from, fill="black")
         self.itemconfig(
-            self.word, text=self.card_data[lang_from], fill="black")
+            self.word, text=self.data[lang_from], fill="black")
 
     def flip(self, lang_to):
         self.itemconfig(self.image_side, image=self.image_back)
         self.itemconfig(self.title, text=lang_to, fill="white")
-        self.itemconfig(self.word, text=self.card_data[lang_to], fill="white")
+        self.itemconfig(self.word, text=self.data[lang_to], fill="white")
+
+    def get_word_text(self, lang):
+        return self.data.get(lang)
 
 
 class AppButton(tk.Button):
