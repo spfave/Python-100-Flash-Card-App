@@ -1,4 +1,5 @@
 import tkinter as tk
+import random
 import app_parameters as ap
 import io_control as io
 
@@ -25,7 +26,7 @@ class CardDeck():
 
 # todo: get next card in deck
     def next_card(self):
-        pass
+        self.card.refresh(random.choice(self.cards), self.lang_from)
 
 # todo: remove word/card from deck if gotten correct
     def remove_card(self):
@@ -52,6 +53,19 @@ class AppCard(tk.Canvas):
         self.image_side = self.create_image(400, 263, image=None)
         self.title = self.create_text(400, 155, text="", font=font_lang)
         self.word = self.create_text(400, 325, text="", font=font_word)
+
+    def refresh(self, card_data, lang_from):
+        self.card_data = card_data
+
+        self.itemconfig(self.image_side, image=self.image_front)
+        self.itemconfig(self.title, text=lang_from, fill="black")
+        self.itemconfig(
+            self.word, text=self.card_data[lang_from], fill="black")
+
+    def flip(self, lang_to):
+        self.itemconfig(self.image_side, image=self.image_back)
+        self.itemconfig(self.title, text=lang_to, fill="white")
+        self.itemconfig(self.word, text=self.card_data[lang_to], fill="white")
 
 
 class AppButton(tk.Button):
