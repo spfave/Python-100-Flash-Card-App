@@ -12,8 +12,8 @@ class IOControl():
 
     def __init__(self, lang_from):
         """  """
-        self.lang_cards = f"data/{lang_from}_words.csv"
-        self.lang_cards_reduced = f"data/{lang_from}_words_to_learn.csv"
+        self.lang_cards = f"data/{lang_from.lower()}_words2.csv"
+        self.lang_cards_reduced = f"data/{lang_from.lower()}_words_to_learn.csv"
 
 # todo: try to open 'french_words_to_learn.csv' if doesn't exist open 'french-words.csv'
     def get_cards(self):
@@ -29,5 +29,6 @@ class IOControl():
 
 # todo: save incorrect words to 'french_words_to_learn.csv'
     def write_cards(self, words_to_learn):
+        data_words_to_learn = pd.DataFrame(words_to_learn)
         with open(self.lang_cards_reduced, mode="w") as write_file:
-            words_to_learn.to_csv(write_file, index=False)
+            data_words_to_learn.to_csv(write_file, index=False)
