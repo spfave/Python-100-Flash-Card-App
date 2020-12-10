@@ -23,14 +23,18 @@ class CardDeck():
         self.cards = self.io.get_cards()
         self.card = AppCard(parent)
 
-    # todo: create carddeck data
-    # todo: save incorrect words
-
-    # todo: get next card in deck
+# todo: get next card in deck
     def next_card(self):
         pass
 
-    # todo: remove word/card from deck if gotten correct
+# todo: remove word/card from deck if gotten correct
+    def remove_card(self):
+        self.cards[:] = [
+            card for card in self.cards if card[self.lang_to] == self.card.word]
+
+# todo: save incorrect words
+    def save_words_to_learn(self):
+        self.io.write_cards(self.cards)
 
 
 class AppCard(tk.Canvas):
