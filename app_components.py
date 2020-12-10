@@ -23,6 +23,7 @@ class CardDeck():
         self.io = io.IOControl(self.lang_from)
         self.cards = self.io.get_cards()
         self.card = AppCard(parent)
+        self.next_card()
 
 # todo: get next card in deck
     def next_card(self):
