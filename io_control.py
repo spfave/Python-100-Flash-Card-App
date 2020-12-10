@@ -29,7 +29,6 @@ class IOControl():
             cards_data = self.get_all_cards()
         finally:
             cards_dict = dataframe_to_dict(cards_data)
-            # cards_dict = cards_data.to_dict(orient="records")
             return cards_dict
 
     def write_cards(self, words_to_learn):
