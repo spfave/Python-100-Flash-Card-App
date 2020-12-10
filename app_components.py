@@ -1,5 +1,6 @@
 import tkinter as tk
 import app_parameters as ap
+import io_control as io
 
 
 # Constants
@@ -18,7 +19,8 @@ class CardDeck():
     def __init__(self, parent):
         self.lang_from = "French"
         self.lang_to = "English"
-
+        self.io = io.IOControl(self.lang_from)
+        self.cards = self.io.get_cards()
         self.card = AppCard(parent)
 
     # todo: create carddeck data
