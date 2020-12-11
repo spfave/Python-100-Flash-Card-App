@@ -17,9 +17,9 @@ class IOControl():
 
     def get_all_cards(self):
         with open(self.lang_cards_all, mode="r") as data_file:
-            cards_data = pd.read_csv(data_file)
-            cards_dict = dataframe_to_dict(cards_data)
-            return cards_dict
+            return pd.read_csv(data_file)
+            # cards_dict = dataframe_to_dict(cards_data)
+            # return cards_data
 
     def get_cards(self):
         try:
@@ -28,8 +28,8 @@ class IOControl():
         except FileNotFoundError:
             cards_data = self.get_all_cards()
         finally:
-            cards_dict = dataframe_to_dict(cards_data)
-            return cards_dict
+            return dataframe_to_dict(cards_data)
+            # return cards_dict
 
     def write_cards(self, words_to_learn):
         data_words_to_learn = pd.DataFrame(words_to_learn)

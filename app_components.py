@@ -31,11 +31,12 @@ class CardDeck():
     def remove_card(self):
         self.cards[:] = [
             card for card in self.cards
-            if card.get(self.lang_from) != self.card.get_word_text(self.lang_from)]
-        # if card.get(self.lang_to) != self.card.get_word_text(self.lang_to)]
+            if card.get(self.lang_to) != self.card.get_word_text(self.lang_to)]
+        # if card.get(self.lang_from) != self.card.get_word_text(self.lang_from)]
 
         if len(self.cards) == 0:  # start with full deck again
-            self.cards = self.io.get_all_cards()
+            card_data = self.io.get_all_cards()
+            self.cards = io.dataframe_to_dict(card_data)
 
     def save_words_to_learn(self):
         self.io.write_cards(self.cards)
