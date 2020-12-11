@@ -16,16 +16,18 @@ class IOControl():
         self.lang_cards_learn = f"data/{lang_from.lower()}_words_to_learn.csv"
 
     def get_all_cards(self):
-        with open(self.lang_cards_all, mode="r") as data_file:
+        with open(self.lang_cards_all, mode="r", encoding="utf-8") as data_file:
             return pd.read_csv(data_file)
 
     def get_cards(self):
         try:
-            with open(self.lang_cards_learn, mode="r") as data_file:
+            with open(self.lang_cards_learn, mode="r", encoding="utf-8") as data_file:
                 cards_data = pd.read_csv(data_file)
         except FileNotFoundError:
             cards_data = self.get_all_cards()
         finally:
+            # print(cards_data)
+            # print(dataframe_to_dict(cards_data))
             return dataframe_to_dict(cards_data)
 
     def write_cards(self, words_to_learn):
