@@ -14,10 +14,6 @@ class MainApplication(tk.Frame):
         self.config(bg=ap.BACKGROUND_COLOR)
         self.card_deck = ac.CardDeck(self)
         self.timer_flip = None
-        # self.lang_from = "French"
-        # self.lang_to = "English"
-
-        # self.card = ac.AppCard(self)
 
         self.image_correct = tk.PhotoImage(file="images/right.png")
         self.button_correct = ac.AppButton(
@@ -59,11 +55,3 @@ class MainApplication(tk.Frame):
 
     # def delay_card_flip(self):
     #     self.timer_flip = self.after(3000, func=self.flip_card)
-
-    # todo: refactor to AppCard class
-    # def flip_card(self):
-    #     self.card.itemconfig(self.card.image_side, image=self.card.image_back)
-    #     self.card.itemconfig(
-    #         self.card.title, text=self.lang_to, fill="white")
-    #     self.card.itemconfig(
-    #         self.card.word, text=self.card_data[self.lang_to], fill="white")
