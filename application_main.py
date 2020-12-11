@@ -10,9 +10,9 @@ class MainApplication(tk.Frame):
     def __init__(self, parent, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
         self.config(bg=ap.BACKGROUND_COLOR)
-        self.card_deck = ac.CardDeck(self)
         self.timer_flip = None
 
+        self.card_deck = ac.CardDeck(self)
         self.image_correct = tk.PhotoImage(file="images/right.png")
         self.button_correct = ac.AppButton(
             self, image=self.image_correct, command=self.click_correct)
@@ -41,5 +41,5 @@ class MainApplication(tk.Frame):
         self.delay_card_flip()
 
     def delay_card_flip(self):
-        self.timer_flip = self.after(
+        self.timer_flip = self.after(  # pass with input
             3000, self.card_deck.card.flip, self.card_deck.lang_to)
