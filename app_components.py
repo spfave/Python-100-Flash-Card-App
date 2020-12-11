@@ -29,9 +29,7 @@ class CardDeck():
         self.card.refresh(random.choice(self.cards), self.lang_from)
 
     def remove_card(self):
-        self.cards[:] = [
-            card for card in self.cards
-            if card.get(self.lang_to) != self.card.get_word_text(self.lang_to)]
+        self.cards.remove(self.card.data)
 
         if len(self.cards) == 0:  # start with full deck again
             card_data = self.io.get_all_cards()
