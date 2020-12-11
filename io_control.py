@@ -26,11 +26,9 @@ class IOControl():
         except FileNotFoundError:
             cards_data = self.get_all_cards()
         finally:
-            # print(cards_data)
-            # print(dataframe_to_dict(cards_data))
             return dataframe_to_dict(cards_data)
 
     def write_cards(self, words_to_learn):
         data_words_to_learn = pd.DataFrame(words_to_learn)
-        with open(self.lang_cards_learn, mode="w", newline="") as write_file:
+        with open(self.lang_cards_learn, mode="w", newline="", encoding="utf-8") as write_file:
             data_words_to_learn.to_csv(write_file, index=False)
